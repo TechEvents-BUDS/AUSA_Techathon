@@ -4,125 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Assistant</title>
-        <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
+    <style>
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f7fa;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #007BFF, #00C6FF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            margin: 0;
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .main-title {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
             text-align: center;
-            color: #4CAF50;
-            font-size: 36px;
-            margin-bottom: 40px;
         }
 
-        .form-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+        header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        .form-label {
-            font-size: 18px;
+        header p {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .label {
+            font-size: 1.1rem;
             margin-bottom: 10px;
-            display: block;
-        }
-
-        .symptom-textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: none;
-            font-size: 16px;
-            color: #555;
-        }
-
-        .question-container {
-            margin-bottom: 30px;
-        }
-
-        .question-container input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        .submit-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .submit-button:hover {
-            background-color: #45a049;
-        }
-
-        .additional-button {
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .additional-button:hover {
-            background-color: #1E88E5;
-        }
-
-        .advice-container {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .advice-container p {
-            font-size: 18px;
             color: #333;
         }
 
-        /* Footer Styles */
-        footer {
-            background-color: #4CAF50;
+        .textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            resize: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .textarea:focus {
+            border-color: #00C6FF;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 198, 255, 0.3);
+        }
+
+        .button {
+            padding: 15px 30px;
+            background-color: #00C6FF;
             color: white;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 40px;
-            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 198, 255, 0.2);
         }
 
-        footer a {
-            color: #f4f7fa;
-            text-decoration: none;
+        .button:hover {
+            background-color: #007BFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .advice {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f7f9fc;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            color: #333;
+            text-align: left;
+        }
+
+        .advice p {
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* Adding gradient and animation for the container */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+            animation: gradientBackground 10s ease infinite;
+        }
+
+        @keyframes gradientBackground {
+            0% {
+                background: linear-gradient(135deg, #007BFF, #00C6FF);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #00C6FF, #00A3FF);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #007BFF, #00C6FF);
+            }
+        }
+
+        /* Media queries for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .button {
+                width: 100%;
+            }
         }
     </style>
 
