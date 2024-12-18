@@ -1,31 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-Powered Personalized Health Assistant</title>
-  <link rel="stylesheet" href="C:\Users\HS LAPTOP\Downloads\TECH\tech\templates">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Assistant</title>
+        <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-title {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .form-label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .symptom-textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-container input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .additional-button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .additional-button:hover {
+            background-color: #1E88E5;
+        }
+
+        .advice-container {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .advice-container p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #f4f7fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
+
 <body>
+    <h1>AI Health Assistant</h1>
 
-  <div class="container">
-    <h1>AI-Powered Personalized Health Assistant</h1>
-    <p>Describe your symptoms and health concerns:</p>
-    
-    <textarea id="symptomsInput" placeholder="Enter your symptoms here..."></textarea>
-    <button id="getAdviceBtn">Get Health Advice</button>
+    <!-- Symptom Form -->
+    <form id="symptomForm">
+        <label for="symptoms">Enter your symptoms:</label>
+        <textarea id="symptoms" rows="4" placeholder="e.g., fever, cough, headache"></textarea>
+        <button type="button" onclick="submitSymptoms()">Analyze</button>
+    </form>
 
-    <div id="loadingMessage" class="hidden">
-      <p>Analyzing symptoms...</p>
-    </div>
+    <!-- Display the advice -->
+    <div id="advice"></div>
 
-    <div id="healthAdvice" class="hidden">
-      <h3>Health Advice:</h3>
-      <p id="adviceContent"></p>
-      <button id="downloadBtn">Download Health Advice</button>
-    </div>
-  </div>
-
-  <script src="C:\Users\HS LAPTOP\Downloads\TECH\tech\templates"></script>
+    <!-- Include JavaScript -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>  <!-- Correctly linking JS -->
 </body>
 </html>
